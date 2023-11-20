@@ -1,4 +1,5 @@
 import numpy as np
+import pandas as pd
 
 
 def fetch_medal_tally(df, year, country):
@@ -41,10 +42,10 @@ def country_year_list(df):
 
     return years,country
 
-def data_over_time(df):
+def data_over_time(df,col):
 
-    nations_over_time = df.drop_duplicates(['Year', 'region'])['Year'].value_counts().reset_index().sort_values('index')
-    nations_over_time.rename(columns={'index': 'Edition', 'Year': 'region'}, inplace=True)
+    nations_over_time = df.drop_duplicates(['Year',col])['Year'].value_counts().reset_index().sort_values('Year')
+    nations_over_time.rename(columns={'Year': 'Edition', 'count': col}, inplace=True)
     return nations_over_time
 
 
