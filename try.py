@@ -86,6 +86,5 @@ if user_menu == 'Overall Analysis':
     st.title("No. of Events over time(Every Sport)")
     fig,ax = plt.subplots(figsize=(20,20))
     x = df.drop_duplicates(['Year', 'Sport', 'Event'])
-    ax = sns.heatmap(x.pivot_table(index='Sport', columns='Year', values='Event', aggfunc='count').fillna(0).astype('int'),
-                annot=True)
+    ax = sns.heatmap(x.pivot_table(index='Sport', columns='Year', values='Event', aggfunc='count').fillna(0).astype('int'),annot=False)
     st.pyplot(fig)
