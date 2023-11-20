@@ -32,3 +32,11 @@ if user_menu == 'Medal Tally':
     if selected_year != 'Overall' and selected_country != 'Overall':
         st.title(selected_country + " performance in " + str(selected_year) + " Olympics")
     st.table(medal_tally)
+
+if user_menu == 'Overall Analysis':
+    editions = df['Year'].unique().shape[0] - 1
+    cities = df['City'].unique().shape[0]
+    sports = df['Sport'].unique().shape[0]
+    events = df['Event'].unique().shape[0]
+    athletes = df['Name'].unique().shape[0]
+    nations = df['region'].unique().shape[0]
