@@ -70,15 +70,22 @@ if user_menu == 'Overall Analysis':
 
     nations_over_time = helper.data_over_time(df,'region')
     fig = px.line(nations_over_time, x="Edition", y="region")
-    st.title("Participating Nations over the years")
+    st.title("Number of participating Nations over the years")
     st.plotly_chart(fig)
 
     events_over_time = helper.data_over_time(df, 'Event')
     fig = px.line(events_over_time, x="Edition", y="Event")
-    st.title("Events over the years")
+    st.title("Number of events over the years")
     st.plotly_chart(fig)
 
     athlete_over_time = helper.data_over_time(df, 'Name')
     fig = px.line(athlete_over_time, x="Edition", y="Name")
-    st.title("Athletes over the years")
+    st.title("Number of athletes over the years")
     st.plotly_chart(fig)
+
+    st.title("No. of Events over time(Every Sport)")
+    fig,ax = plt.subplots(figsize=(20,20))
+    x = df.drop_duplicates(['Year', 'Sport', 'Event'])
+    ax = sns.heatmap(x.pivot_table(index='Sport', columns='Year', values='Event', aggfunc='count').fillna(0).astype('int'),
+                annot=True)
+    st.pyplot(fig)
