@@ -5,6 +5,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.figure_factory as ff
+import numpy as np
 
 df = pd.read_csv('athlete_events.csv')
 region_df = pd.read_csv('noc_regions.csv')
@@ -88,3 +89,11 @@ if user_menu == 'Overall Analysis':
     x = df.drop_duplicates(['Year', 'Sport', 'Event'])
     ax = sns.heatmap(x.pivot_table(index='Sport', columns='Year', values='Event', aggfunc='count').fillna(0).astype('int'),annot=False)
     st.pyplot(fig)
+
+    st.title("Most successful Athletes")
+    sport_list = df['Sport'].unique().tolist()
+    sport_list.sort()
+    sport_list.insert(0,'Overall')
+    selected_sport = st.selectbox('Select a Sport',sport_list)
+    x = helper.most_successful(df,selected_sport)
+    st.table(x)
