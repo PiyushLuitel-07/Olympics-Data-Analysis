@@ -155,3 +155,7 @@ if user_menu == 'Athlete wise Analysis':
     fig.update_layout(autosize=False, width=1000, height=600)
     st.title("Distribution of Age wrt Sports(Gold Medalist)")
     st.plotly_chart(fig)
+
+    sport_list = df['Sport'].unique().tolist()
+    sport_list.sort()
+    sport_list.insert(0, 'Overall')
