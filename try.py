@@ -117,6 +117,6 @@ if user_menu == 'Country-wise Analysis':
     ax = sns.heatmap(pt,annot=True)
     st.pyplot(fig)
 
-    st.title("Top 10 athletes of " + selected_country)
+    st.title("Top 10 athletes from " + selected_country)
     top10_df = helper.most_successful_countrywise(df,selected_country)
     st.table(top10_df)
